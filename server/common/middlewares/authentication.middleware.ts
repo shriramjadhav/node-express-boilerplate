@@ -33,11 +33,9 @@ const isOpenPath = (path: string) => {
   }
 };
 
-export const authenticate = () => async (request: Request, response: Response, next: NextFunction) => {
+export const authenticate = () => (request: Request, response: Response, next: NextFunction) => {
   if (isOpenPath(request.path)) {
     return next();
   }
-  validateApi(request, response, next);
-
-  return next();
+  return validateApi(request, response, next);
 };

@@ -7,7 +7,6 @@ import { setupSecurity } from './middlewares/security.middleware';
 import setupRoutes from '../routes';
 import errorHandler from './middlewares/error-handler.middleware';
 import LoggerService from './utilities/logger/logger';
-import databaseHandler from '../database';
 
 const app = express();
 
@@ -18,9 +17,6 @@ export default class ExpressServer {
     app.use(authenticate());
     setupRoutes(app);
     app.use(errorHandler());
-    databaseHandler.connect();
-    databaseHandler.init();
-    databaseHandler.sync();
     this.listen(p);
     return this;
   }
